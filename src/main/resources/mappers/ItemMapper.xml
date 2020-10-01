@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
+
+    <insert parameterType="map" id="insertarItem">
+        INSERT INTO VI_ITEMS VALUES (
+            #{item.id},
+            #{item.nombre},
+            #{item.descripcion},
+            #{item.fechaLanzamiento},
+            #{item.tarifaxDia},
+            #{item.formatoRenta},
+            #{item.genero},
+            #{item.tipo.id}
+        );
+    </insert>
+
+    <select parameterType="map" id="consultarItems" resultMap="ItemsResult">
+        SELECT 
+	
+            it.id                    AS item_id,
+            it.nombre                AS item_nombre,
+            it.descripcion           AS item_descripcion,
+            it.fechalanzamiento      AS item_fechalanzamiento,
+            it.tarifaxdia            AS item_tarifaxdia,
+            it.formatorenta          AS item_formatorenta,
+            it.genero                AS item_genero,   
+                    
+            ti.id                    AS tipoitem_id,
+            ti.descripcion           AS tipoitem_descripcion 
+
+        FROM VI_ITEMS AS it
+        LEFT JOIN VI_TIPOITEM AS ti ON it.TIPOITEM_id = ti.id;
+    </select>
+
+    <resultMap id="ItemsResult" type="Item">
+        <id property="id" column="item_id" />
+        <result property="nombre" column="item_nombre" />
+        <result property="descripcion" column="item_descripcion" />
+        <result property="fechaLanzamiento" column="item_fechalanzamiento" />
+        <result property="tarifaxDia" column="item_tarifaxdia" />
+        <result property="formatoRenta" column="item_formatorenta" />
+        <result property="genero" column="item_genero" />
+        <association property="tipo" resultMap="TipoItemResult"></association>
+    </resultMap>
+
+
+    <select parameterType="map" id="consultarItem" resultMap="ItemResult">
+        SELECT 
+	
+            it.id                    AS item_id,
+            it.nombre                AS item_nombre,
+            it.descripcion           AS item_descripcion,
+            it.fechalanzamiento      AS item_fechalanzamiento,
+            it.tarifaxdia            AS item_tarifaxdia,
+            it.formatorenta          AS item_formatorenta,
+            it.genero                AS item_genero,   
+                    
+            ti.id                    AS tipoitem_id,
+            ti.descripcion           AS tipoitem_descripcion 
+
+        FROM VI_ITEMS AS it
+        LEFT JOIN VI_TIPOITEM AS ti ON it.TIPOITEM_id = ti.id
+        
+        WHERE it.id = #{idItem};
+    </select>
+
+    <resultMap id="ItemResult" type="Item">
+        <id property="id" column="item_id" />
+        <result property="nombre" column="item_nombre" />
+        <result property="descripcion" column="item_descripcion" />
+        <result property="fechaLanzamiento" column="item_fechalanzamiento" />
+        <result property="tarifaxDia" column="item_tarifaxdia" />
+        <result property="formatoRenta" column="item_formatorenta" />
+        <result property="genero" column="item_genero" />
+        <association property="tipo" resultMap="TipoItemResult"></association>
+    </resultMap>
+
+    <resultMap id="TipoItemResult" type="TipoItem">
+        <id property="id" column="tipoitem_id" />
+        <result property="descripcion" column="tipoitem_descripcion" />
+    </resultMap>
+
+</mapper>

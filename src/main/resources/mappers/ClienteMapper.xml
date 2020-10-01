@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
+
+    <insert parameterType="map" id="agregarItemRentadoACliente">
+        INSERT INTO
+            VI_ITEMRENTADO (
+                CLIENTES_documento, 
+                ITEMS_id, 
+                fechainiciorenta, 
+                fechafinrenta)
+            VALUES (
+                #{idCliente},
+                #{idItem},
+                #{fechaInicio},
+                #{fechaFin}
+            );
+    </insert>
+
+    <select parameterType="map" id="consultarClientes" resultMap="ClientesResult">
+		SELECT
+    
+            c.nombre                AS cliente_nombre,
+            c.documento             AS cliente_documento,
+            c.telefono              AS cliente_telefono,
+            c.direccion             AS cliente_direccion,
+            c.email                 AS cliente_email,
+            c.vetado                AS cliente_vetado,
+            
+            i.id                    AS item_id,
+            i.nombre                AS item_nombre,
+            i.descripcion           AS item_descripcion,
+            i.fechalanzamiento      AS item_fechalanzamiento,
+            i.tarifaxdia            AS item_tarifaxdia,
+            i.formatorenta          AS item_formatorenta,
+            i.genero                AS item_genero,   
+            
+            ir.id                   AS itemren_id,
+            ir.fechainiciorenta     AS itemren_fechainiciorenta,
+            ir.fechafinrenta        AS itemren_fechafinrenta,
+            
+            ti.id                   AS tipoitem_id,
+            ti.descripcion          AS tipoitem_descripcion 
+
+            
+        FROM VI_CLIENTES AS c 
+        LEFT JOIN VI_ITEMRENTADO AS ir ON c.documento=ir.CLIENTES_documento 
+        LEFT JOIN VI_ITEMS AS i ON ir.ITEMS_id=i.id 
+        LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id;
+    </select>
+
+    <resultMap id="ClientesResult" type="Cliente">
+        <id property="documento" column="cliente_documento" />
+        <result property="nombre" column="cliente_nombre" />
+        <result property="telefono" column="cliente_telefono" />
+        <result property="direccion" column="cliente_direccion" />
+        <result property="email" column="cliente_email" />
+        <result property="vetado" column="cliente_vetado" />
+        <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"></collection>
+    </resultMap>
+
+    
+    <select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
+        SELECT
+    
+            c.nombre                AS cliente_nombre,
+            c.documento             AS cliente_documento,
+            c.telefono              AS cliente_telefono,
+            c.direccion             AS cliente_direccion,
+            c.email                 AS cliente_email,
+            c.vetado                AS cliente_vetado,
+            
+            i.id                    AS item_id,
+            i.nombre                AS item_nombre,
+            i.descripcion           AS item_descripcion,
+            i.fechalanzamiento      AS item_fechalanzamiento,
+            i.tarifaxdia            AS item_tarifaxdia,
+            i.formatorenta          AS item_formatorenta,
+            i.genero                AS item_genero,   
+            
+            ir.id                   AS itemren_id,
+            ir.fechainiciorenta     AS itemren_fechainiciorenta,
+            ir.fechafinrenta        AS itemren_fechafinrenta,
+            
+            ti.id                   AS tipoitem_id,
+            ti.descripcion          AS tipoitem_descripcion 
+
+        
+        FROM VI_CLIENTES AS c 
+        LEFT JOIN VI_ITEMRENTADO AS ir ON c.documento=ir.CLIENTES_documento 
+        LEFT JOIN VI_ITEMS AS i ON ir.ITEMS_id=i.id 
+        LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
+        
+        WHERE c.documento = #{idCliente};
+    </select>
+
+    <resultMap id="ClienteResult" type="Cliente">
+        <id property="documento" column="cliente_documento" />
+        <result property="nombre" column="cliente_nombre" />
+        <result property="telefono" column="cliente_telefono" />
+        <result property="direccion" column="cliente_direccion" />
+        <result property="email" column="cliente_email" />
+        <result property="vetado" column="cliente_vetado" />
+        <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"></collection>
+    </resultMap>
+
+
+    <resultMap id="ItemRentadoResult" type="ItemRentado">
+        <id property="id" column="itemren_id" />
+        <result property="fechainiciorenta" column="itemren_fechainiciorenta" />
+        <result property="fechafinrenta" column="itemren_fechafinrenta" />
+        <association property="item" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"></association>
+    </resultMap>
+
+</mapper>
