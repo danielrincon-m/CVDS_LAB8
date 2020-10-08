@@ -18,17 +18,23 @@ package edu.eci.cvds.samples.services.client;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
+import edu.eci.cvds.samples.entities.Cliente;
+import edu.eci.cvds.samples.entities.ItemRentado;
 
 /**
  *
@@ -72,22 +78,38 @@ public class MyBatisExample {
         // Crear el mapper y usarlo:
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
         ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        ItemRentadoMapper irm = sqlss.getMapper(ItemRentadoMapper.class);
 
-        
         // Consultar todos los clientes
-        System.out.println(cm.consultarClientes());
+        // System.out.println(cm.consultarClientes());
+
+        // System.out.println(im.consultarItemsDisponibles());
+
+        // System.out.println(irm.consultarItemRentado(2132595));
 
         // Consultar un cliente por documento
-        // System.out.println(cm.consultarCliente(-703));
+        System.out.println(cm.consultarCliente(-703));
 
         // Insertar un item rentado
         // cm.agregarItemRentadoACliente(-703, 99, dateFormat.parse("2020-09-26"),
         // dateFormat.parse("2021-09-26"));
 
+        // Registrar Cliente
+        // Cliente cliente = new Cliente("Wilson2", -1004, "54321", "asdasdasd2", "a@b.cc", true,
+        //         new ArrayList<ItemRentado>());
+        // cm.registrarCliente(cliente);
+
+        //Vetar Cliente
+        // cm.setVetado(-1003, true);
+
+        //Registrar renta
+        irm.registrarRenta(-1004, 6, new Date(dateFormat.parse("2020-10-20").getTime()), new Date(dateFormat.parse("2020-12-26").getTime()));
+
         // Insertar un nuevo item
         // TipoItem tipoItem = new TipoItem(4, "virus");
-        // Item item = new Item(tipoItem, 1000002, "aaa", "aaaaaaaaaaa", dateFormat.parse("2020-09-26"), 44444, "a",
-        //         "aaaaaaa");
+        // Item item = new Item(tipoItem, 1000002, "aaa", "aaaaaaaaaaa",
+        // dateFormat.parse("2020-09-26"), 44444, "a",
+        // "aaaaaaa");
         // im.insertarItem(item);
 
         // Consultar todos los items
@@ -95,7 +117,6 @@ public class MyBatisExample {
 
         // Consultar item por id
         // System.out.println(im.consultarItem(1));
-
 
         sqlss.commit();
         sqlss.close();

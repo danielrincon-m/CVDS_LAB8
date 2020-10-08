@@ -16,6 +16,12 @@
         );
     </insert>
 
+    <update id="actualizarTarifa">
+        UPDATE VI_ITEMS
+        SET tarifaxdia = #{tarifa}
+        WHERE id = #{idItem};
+    </update>
+
     <select parameterType="map" id="consultarItems" resultMap="ItemsResult">
         SELECT 
 	
@@ -32,6 +38,27 @@
 
         FROM VI_ITEMS AS it
         LEFT JOIN VI_TIPOITEM AS ti ON it.TIPOITEM_id = ti.id;
+    </select>
+
+    <select id="consultarItemsDisponibles" resultMap="ItemsResult">
+        SELECT 
+	
+            it.id                    AS item_id,
+            it.nombre                AS item_nombre,
+            it.descripcion           AS item_descripcion,
+            it.fechalanzamiento      AS item_fechalanzamiento,
+            it.tarifaxdia            AS item_tarifaxdia,
+            it.formatorenta          AS item_formatorenta,
+            it.genero                AS item_genero,   
+                    
+            ti.id                    AS tipoitem_id,
+            ti.descripcion           AS tipoitem_descripcion 
+
+        FROM VI_ITEMS AS it
+        LEFT JOIN VI_TIPOITEM AS ti ON it.TIPOITEM_id = ti.id
+        WHERE it.id NOT IN (SELECT ITEMS_id
+                            FROM VI_ITEMRENTADO ir
+                            WHERE fechafinrenta > CURDATE());
     </select>
 
     <resultMap id="ItemsResult" type="Item">

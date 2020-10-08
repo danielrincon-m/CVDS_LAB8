@@ -9,6 +9,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
+import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.TipoItemDAO;
 import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
@@ -21,31 +22,31 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
     @Inject
     private ClienteDAO clienteDAO;
-
+    @Inject
+    private ItemRentadoDAO itemRentadoDAO;
     @Inject
     private ItemDAO itemDAO;
-
     @Inject
     private TipoItemDAO tipoItemDAO;
 
     @Override
-    public int valorMultaRetrasoxDia(int itemId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public long valorMultaRetrasoxDia(int itemId) {
+        return itemDAO.valorMultaXDia(itemId);
     }
 
     @Override
     public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return clienteDAO.consultarcliente(docu);
     }
 
     @Override
     public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return clienteDAO.consultarItemsRentados(idcliente);
     }
 
     @Override
     public List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return clienteDAO.consultarClientes();
     }
 
     @Override
@@ -59,54 +60,52 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
     @Override
     public List<Item> consultarItemsDisponibles() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return itemDAO.itemsDisponibles();
     }
 
     @Override
     public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return itemRentadoDAO.multaAlquiler(iditem, fechaDevolucion);
     }
 
     @Override
     public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return itemDAO.tipoItem(id);
     }
 
     @Override
     public List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return itemDAO.tipoItems();
     }
 
     @Override
     public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias)
             throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        itemRentadoDAO.registrarAlquiler(docu, item, date, numdias);
     }
 
     @Override
     public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        clienteDAO.registrarCliente(c);
     }
 
     @Override
     public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return itemDAO.costoAlquiler(iditem, numdias);
     }
 
     @Override
     public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        itemDAO.actualizarTarifa(id, tarifa);
     }
 
     @Override
     public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-                                                                       // Tools | Templates.
+        itemDAO.save(i);
     }
 
     @Override
     public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-                                                                       // Tools | Templates.
+        clienteDAO.vetarCliente(docu, estado);
     }
 }

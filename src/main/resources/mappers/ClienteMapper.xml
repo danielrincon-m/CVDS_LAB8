@@ -18,6 +18,24 @@
             );
     </insert>
 
+    <insert id="registrarCliente">
+        INSERT INTO VI_CLIENTES
+        VALUES (
+            #{cliente.documento}, 
+            #{cliente.nombre}, 
+            #{cliente.telefono}, 
+            #{cliente.direccion},
+            #{cliente.email}, 
+            #{cliente.vetado}
+        );
+    </insert>
+
+    <update id="setVetado">
+        UPDATE VI_CLIENTES 
+            SET vetado = #{vetado}
+            WHERE documento = #{docCliente};
+    </update>
+
     <select parameterType="map" id="consultarClientes" resultMap="ClientesResult">
 		SELECT
     
@@ -57,10 +75,10 @@
         <result property="direccion" column="cliente_direccion" />
         <result property="email" column="cliente_email" />
         <result property="vetado" column="cliente_vetado" />
-        <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"></collection>
+        <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult"></collection>
     </resultMap>
 
-    
+
     <select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
         SELECT
     
@@ -102,15 +120,7 @@
         <result property="direccion" column="cliente_direccion" />
         <result property="email" column="cliente_email" />
         <result property="vetado" column="cliente_vetado" />
-        <collection property="rentados" ofType="ItemRentado" resultMap="ItemRentadoResult"></collection>
-    </resultMap>
-
-
-    <resultMap id="ItemRentadoResult" type="ItemRentado">
-        <id property="id" column="itemren_id" />
-        <result property="fechainiciorenta" column="itemren_fechainiciorenta" />
-        <result property="fechafinrenta" column="itemren_fechafinrenta" />
-        <association property="item" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"></association>
+        <collection property="rentados" ofType="ItemRentado" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult"></collection>
     </resultMap>
 
 </mapper>

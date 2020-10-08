@@ -13,12 +13,19 @@ import edu.eci.cvds.samples.entities.Cliente;
 public interface ClienteMapper {
 
     /**
+     * Consultar todos los clientes
+     * 
+     * @return
+     */
+    public List<Cliente> consultarClientes();
+
+    /**
      * Consultar un cliente por su número de documento
      * 
      * @param id
      * @return El objeto que representa al cliente
      */
-    public Cliente consultarCliente(@Param("idCliente") int id);
+    public Cliente consultarCliente(@Param("idCliente") long id);
 
     /**
      * Registrar un nuevo item rentado asociado al cliente identificado con 'idc' y
@@ -29,14 +36,10 @@ public interface ClienteMapper {
      * @param fechainicio
      * @param fechafin
      */
-    public void agregarItemRentadoACliente(@Param("idCliente") int id, @Param("idItem") int idit,
+    public void agregarItemRentadoACliente(@Param("idCliente") long id, @Param("idItem") int idit,
             @Param("fechaInicio") Date fechainicio, @Param("fechaFin") Date fechafin);
 
-    /**
-     * Consultar todos los clientes
-     * 
-     * @return
-     */
-    public List<Cliente> consultarClientes();
+    public void registrarCliente(@Param("cliente") Cliente cliente);
 
+    public void setVetado(@Param("docCliente") long doc, @Param("vetado") boolean vetado);
 }
