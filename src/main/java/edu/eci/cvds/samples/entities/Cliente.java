@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class Cliente implements Serializable{
     
+    private static final long serialVersionUID = -6393397566674305335L;
     private String nombre;
     private long documento;
     private String telefono;

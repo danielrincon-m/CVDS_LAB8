@@ -22,19 +22,15 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
-import edu.eci.cvds.samples.entities.Cliente;
-import edu.eci.cvds.samples.entities.ItemRentado;
 
 /**
  *

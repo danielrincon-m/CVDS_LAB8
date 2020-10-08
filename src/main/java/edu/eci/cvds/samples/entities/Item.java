@@ -13,6 +13,8 @@ import java.util.Date;
  * @author 2106913
  */
 public class Item implements Serializable {
+    
+    private static final long serialVersionUID = 3986582466171456832L;
     private TipoItem tipo;
     private int id;
     private String nombre;

@@ -12,6 +12,9 @@ import java.io.Serializable;
  * @author 2106913
  */
 public class TipoItem implements Serializable {
+    
+    private static final long serialVersionUID = 7580434487457784425L;
+    
     private int id;
     private String descripcion;
 
