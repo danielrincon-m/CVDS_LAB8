@@ -254,10 +254,4 @@ public class ServiciosAlquilerStub implements ServiciosAlquiler {
         clientes.put(c3.getDocumento(), c3);
 
     }
-
-    @Override
-    public long consultarMultaAlquiler(Date fechaFinRenta, Date fechaDevolucion, long tarifaxdia) throws ExcepcionServiciosAlquiler {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 }

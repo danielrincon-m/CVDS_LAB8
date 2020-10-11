@@ -83,10 +83,8 @@ public class MyBatisExample {
 
         // System.out.println(irm.consultarItemRentado(2132595));
 
-        System.out.println(irm.consultarItemRentado(2));
-
         // Consultar un cliente por documento
-        // System.out.println(cm.consultarCliente(-703));
+        System.out.println(cm.consultarCliente(-703));
 
         // Insertar un item rentado
         // cm.agregarItemRentadoACliente(-703, 99, dateFormat.parse("2020-09-26"),
@@ -101,7 +99,7 @@ public class MyBatisExample {
         // cm.setVetado(-1003, true);
 
         //Registrar renta
-        // irm.registrarRenta(-1004, 6, new Date(dateFormat.parse("2020-10-20").getTime()), new Date(dateFormat.parse("2020-12-26").getTime()));
+        irm.registrarRenta(-1004, 6, new Date(dateFormat.parse("2020-10-20").getTime()), new Date(dateFormat.parse("2020-12-26").getTime()));
 
         // Insertar un nuevo item
         // TipoItem tipoItem = new TipoItem(4, "virus");
