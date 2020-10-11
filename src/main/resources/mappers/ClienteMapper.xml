@@ -110,7 +110,9 @@
         LEFT JOIN VI_ITEMS AS i ON ir.ITEMS_id=i.id 
         LEFT JOIN VI_TIPOITEM AS ti ON i.TIPOITEM_id=ti.id
         
-        WHERE c.documento = #{idCliente};
+        WHERE c.documento = #{idCliente}
+        
+        ORDER BY ir.fechafinrenta;
     </select>
 
     <resultMap id="ClienteResult" type="Cliente">
