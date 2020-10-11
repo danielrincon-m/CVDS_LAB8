@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  maven: circleci/maven@1.0.2
+  heroku: circleci/heroku@1.2.2
+
+#executors:
+  #working_directory: ~/project/PrimeFaces
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
