@@ -1,12 +1,8 @@
 package edu.eci.cvds.test;
 
-import static org.junit.Assert.fail;
-
 import java.sql.Date;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
