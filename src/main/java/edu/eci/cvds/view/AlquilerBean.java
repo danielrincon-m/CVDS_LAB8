@@ -26,7 +26,7 @@ public class AlquilerBean extends BasePageBean {
     private int idItem;
     private int diasAlquiler;
 
-    // @ManagedProperty(value = "#{id}")
+    // @ManagedProperty(value = "#{id}")    
     // private Long id;
 
     public List<ItemRentado> getItems() throws ExcepcionServiciosAlquiler {
@@ -34,13 +34,6 @@ public class AlquilerBean extends BasePageBean {
         java.sql.Date date = new java.sql.Date(millis);
 
         itemsRentados = serviciosAlquiler.consultarItemsCliente(documento);
-        for (int i = itemsRentados.size() - 1; i >= 0; i--) {
-            ItemRentado item = itemsRentados.get(i);
-            if (serviciosAlquiler.consultarMultaAlquiler(item.getFechafinrenta(), date,
-                    item.getItem().getTarifaxDia()) <= 0) {
-                itemsRentados.remove(i);
-            }
-        }
         return itemsRentados;
     }
 
@@ -61,7 +54,7 @@ public class AlquilerBean extends BasePageBean {
     }
 
     public long consultarCostoAlquiler() throws ExcepcionServiciosAlquiler {
-        //System.out.println(idItem + "  :  " + diasAlquiler);
+        // System.out.println(idItem + " : " + diasAlquiler);
         try {
             return serviciosAlquiler.consultarCostoAlquiler(idItem, diasAlquiler);
         } catch (Exception e) {
@@ -74,15 +67,20 @@ public class AlquilerBean extends BasePageBean {
         java.sql.Date date = new java.sql.Date(millis);
         Item itemRegistrado = serviciosAlquiler.consultarItem(idItem);
 
-        serviciosAlquiler.registrarAlquilerCliente(date, documento, itemRegistrado, diasAlquiler);
+        try {
+            serviciosAlquiler.registrarAlquilerCliente(date, documento, itemRegistrado, diasAlquiler);        
+        } catch (Exception e) {
+
+        }
         clear();
-        return "registrocliente.xhtml?faces-redirect=true";
+            return "registrocliente.xhtml?faces-redirect=true";
     }
 
     private void clear() {
         idItem = 0;
         diasAlquiler = 0;
     }
+
     public long getDocumento() {
         return documento;
     }
