@@ -1,35 +1,7 @@
 # Daniel Felipe Rincón Muñoz
 
-## Sección I. - Introducción a JDBC
+[![danielrincon-m](https://circleci.com/gh/danielrincon-m/CVDS_LAB8.svg?style=svg)](https://app.circleci.com/pipelines/github/danielrincon-m/CVDS_LAB8)
 
-***
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8ab26dec442146c7b1f4034fdbf7d3d9)](https://www.codacy.com/gh/danielrincon-m/CVDS_LAB8/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danielrincon-m/CVDS_LAB8&amp;utm_campaign=Badge_Grade)
 
-### Punto 8. Verificación de resultados correctos
-
-*Resultado PreparedStatement:*
-
-![Resultado PreparedStatement](img/PreparedStatement.jpg)
-
-*Verificación de resultados:*
-
-![Precio Total](img/precioTotal.jpg)
-
-![Nombres](img/nombres.jpg)
-
-*Inserción de dato:*
-
-![codigo Java](img/codigoInsercion.jpg)
-
-![Resultado insercion](img/resultadoInsercion.jpg)
-
-***
-
-## Sección II. - Introducción a MyBatis
-
-### PARTE I
-
-***
-
-### Punto 1. Resultado de la consulta
-
-![consulta sql](/img/consulta.jpg)
+[Aplicación en Heroku](https://cvds-lab8.herokuapp.com/faces/registrocliente.xhtml)
