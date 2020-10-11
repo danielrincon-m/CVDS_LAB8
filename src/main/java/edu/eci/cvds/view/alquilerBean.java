@@ -67,7 +67,7 @@ public class alquilerBean extends BasePageBean {
 
         serviciosAlquiler.registrarAlquilerCliente(date, documento, itemRegistrado, diasAlquiler);
         clear();
-        return "registrocliente.xhtml";
+        return "registrocliente.xhtml?faces-redirect=true";
     }
 
     private void clear() {
