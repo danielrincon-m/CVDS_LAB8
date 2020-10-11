@@ -60,6 +60,15 @@ public class AlquilerBean extends BasePageBean {
                 item.getItem().getTarifaxDia()));
     }
 
+    public long consultarCostoAlquiler() throws ExcepcionServiciosAlquiler {
+        //System.out.println(idItem + "  :  " + diasAlquiler);
+        try {
+            return serviciosAlquiler.consultarCostoAlquiler(idItem, diasAlquiler);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     public String registrarAlquiler() throws ExcepcionServiciosAlquiler {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);

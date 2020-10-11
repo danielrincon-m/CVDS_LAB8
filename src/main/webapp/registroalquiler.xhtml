@@ -13,15 +13,23 @@
         <h:form id="alq-form">
             <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center">
                 <p:outputLabel for="id-item-input" value="ID Iem: " />
-                <p:inputNumber id="id-item-input" value="#{alquilerBean.idItem}" required="true" decimalPlaces="0" />
+                <p:inputNumber id="id-item-input" value="#{alquilerBean.idItem}" required="true" decimalPlaces="0">
+                    <p:ajax update="costoLabel" event="keyup" />
+                </p:inputNumber>
 
                 <p:outputLabel for="dias-input" value="Días de Alquiler: " />
-                <p:inputNumber id="dias-input" value="#{alquilerBean.diasAlquiler}" required="true" decimalPlaces="0" />
+                <p:inputNumber id="dias-input" value="#{alquilerBean.diasAlquiler}" required="true" decimalPlaces="0">
+                    <p:ajax update="costoLabel" event="keyup" />
+                </p:inputNumber>
             </p:panelGrid>
-            <div>
-                <p:commandButton style="margin: 0.5em 35% 1em 35%; width: 30%" ajax="false"
-                    action="#{alquilerBean.registrarAlquiler()}" update="alq-form items-table"
-                    value="Registrar Alquiler" />
+            <div style="text-align: center; margin: 0.5em auto; font-size: medium; font-weight: bold;">
+                <p:outputLabel style="color: rgb(190, 146, 34);" id="costoLabel" value="Costo del Alquiler: #{alquilerBean.consultarCostoAlquiler()}" />
+            </div>
+            <div style="margin: 0.5em 35% 1em 35%; width: 30%">
+                <p:commandButton ajax="true" action="#{alquilerBean.registrarAlquiler()}" update="alq-form items-table"
+                    value="Registrar Alquiler">
+                    <p:confirm header="Conf" message="Está seguro de realizar el alquiler?" />
+                </p:commandButton>
             </div>
         </h:form>
 
@@ -51,6 +59,11 @@
             </p:column>
         </p:dataTable>
     </div>
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" />
+    </p:confirmDialog>
 
     <f:metadata>
         <f:viewParam name="doc" value="#{alquilerBean.documento}" />
