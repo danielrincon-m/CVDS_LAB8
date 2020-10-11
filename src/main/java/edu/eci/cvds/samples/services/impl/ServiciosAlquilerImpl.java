@@ -69,6 +69,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
     }
 
     @Override
+	public long consultarMultaAlquiler(Date fechaFinRenta, Date fechaDevolucion, long tarifaxdia) throws ExcepcionServiciosAlquiler {
+        return itemRentadoDAO.multaAlquiler(fechaFinRenta, fechaDevolucion, tarifaxdia);
+	}
+
+    @Override
     public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler {
         return itemDAO.tipoItem(id);
     }
