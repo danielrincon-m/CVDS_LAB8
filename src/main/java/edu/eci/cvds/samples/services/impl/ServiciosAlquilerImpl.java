@@ -10,7 +10,6 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
 import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
-import edu.eci.cvds.sampleprj.dao.TipoItemDAO;
 import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.ItemRentado;
@@ -26,8 +25,8 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
     private ItemRentadoDAO itemRentadoDAO;
     @Inject
     private ItemDAO itemDAO;
-    @Inject
-    private TipoItemDAO tipoItemDAO;
+    // @Inject
+    // private TipoItemDAO tipoItemDAO;
 
     @Override
     public long valorMultaRetrasoxDia(int itemId) {

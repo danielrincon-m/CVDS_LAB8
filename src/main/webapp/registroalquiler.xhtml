@@ -19,8 +19,8 @@
                 <p:inputNumber id="dias-input" value="#{alquilerBean.diasAlquiler}" required="true" decimalPlaces="0" />
             </p:panelGrid>
             <div>
-                <p:commandButton style="margin: 0.5em 35% 1em 35%; width: 30%" ajax="true"
-                    actionListener="#{alquilerBean.registrarAlquiler()}" update="alq-form items-table"
+                <p:commandButton style="margin: 0.5em 35% 1em 35%; width: 30%" ajax="false"
+                    action="#{alquilerBean.registrarAlquiler()}" update="alq-form items-table"
                     value="Registrar Alquiler" />
             </div>
         </h:form>

@@ -1,11 +1,9 @@
 package edu.eci.cvds.view;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import edu.eci.cvds.samples.entities.Item;
@@ -62,13 +60,14 @@ public class alquilerBean extends BasePageBean {
                 item.getItem().getTarifaxDia()));
     }
 
-    public void registrarAlquiler() throws ExcepcionServiciosAlquiler {
+    public String registrarAlquiler() throws ExcepcionServiciosAlquiler {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         Item itemRegistrado = serviciosAlquiler.consultarItem(idItem);
 
         serviciosAlquiler.registrarAlquilerCliente(date, documento, itemRegistrado, diasAlquiler);
         clear();
+        return "registrocliente.xhtml";
     }
 
     private void clear() {

@@ -18,10 +18,10 @@ package edu.eci.cvds.samples.services.client;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
+// import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -67,7 +67,7 @@ public class MyBatisExample {
      */
     public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         SqlSession sqlss = sessionfact.openSession();
 
@@ -77,16 +77,16 @@ public class MyBatisExample {
         ItemRentadoMapper irm = sqlss.getMapper(ItemRentadoMapper.class);
 
         // Consultar todos los clientes
-        // System.out.println(cm.consultarClientes());
+        System.out.println(cm.consultarClientes());
 
-        // System.out.println(im.consultarItemsDisponibles());
+        System.out.println(im.consultarItemsDisponibles());
 
-        // System.out.println(irm.consultarItemRentado(2132595));
+        System.out.println(irm.consultarItemRentado(2132595));
 
         System.out.println(irm.consultarItemRentado(2));
 
         // Consultar un cliente por documento
-        // System.out.println(cm.consultarCliente(-703));
+        System.out.println(cm.consultarCliente(-703));
 
         // Insertar un item rentado
         // cm.agregarItemRentadoACliente(-703, 99, dateFormat.parse("2020-09-26"),
@@ -111,10 +111,10 @@ public class MyBatisExample {
         // im.insertarItem(item);
 
         // Consultar todos los items
-        // System.out.println(im.consultarItems());
+        System.out.println(im.consultarItems());
 
         // Consultar item por id
-        // System.out.println(im.consultarItem(1));
+        System.out.println(im.consultarItem(1));
 
         sqlss.commit();
         sqlss.close();
