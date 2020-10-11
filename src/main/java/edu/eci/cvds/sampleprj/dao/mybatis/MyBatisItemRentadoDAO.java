@@ -30,6 +30,17 @@ public class MyBatisItemRentadoDAO implements ItemRentadoDAO {
     }
 
     @Override
+    public long multaAlquiler(Date fechaFinRenta, Date fechaDevolucion, long tarifaxdia) throws PersistenceException {
+        try {
+            LocalDate finRenta = fechaFinRenta.toLocalDate();
+            LocalDate devolucion = fechaDevolucion.toLocalDate();
+            return ChronoUnit.DAYS.between(finRenta, devolucion) * tarifaxdia;
+        } catch (PersistenceException e) {
+            throw new PersistenceException("Error al consultar la multa", e);
+        }
+    }
+
+    @Override
     public void registrarAlquiler(long doc, Item item, Date fechaInicio, int numDias) {
         LocalDate fechaInicial = fechaInicio.toLocalDate();
         LocalDate fechaFinal = fechaInicial.plusDays(numDias);

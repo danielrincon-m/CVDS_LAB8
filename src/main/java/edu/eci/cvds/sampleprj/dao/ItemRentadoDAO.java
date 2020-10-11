@@ -10,6 +10,8 @@ public interface ItemRentadoDAO {
 
     public long multaAlquiler(int itemId, Date fechaDevolucion) throws PersistenceException;
 
+    public long multaAlquiler(Date fechaFinRenta, Date fechaDevolucion, long tarifaxdia) throws PersistenceException;
+
     public void registrarAlquiler(long doc, Item item, Date fechainicio, int numDias) throws PersistenceException;
 
 }

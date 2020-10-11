@@ -44,6 +44,9 @@ public interface ServiciosAlquiler {
      */
     public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler;
 
+    public abstract long consultarMultaAlquiler(Date fechaFinRenta, Date fechaDevolucion, long tarifaxdia)
+            throws ExcepcionServiciosAlquiler;
+
     public abstract TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
 
     public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
