@@ -14,7 +14,7 @@ import edu.eci.cvds.samples.services.ServiciosAlquiler;
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "alquilerBean")
 @SessionScoped
-public class alquilerBean extends BasePageBean {
+public class AlquilerBean extends BasePageBean {
 
     private static final long serialVersionUID = 4223254098664140119L;
 
